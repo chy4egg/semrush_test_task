@@ -1,24 +1,36 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import './App.module.scss';
+import {TopLine} from './components/topLine/TopLine';
+import {Button} from './kit/button/Button';
+import {CartIcon} from "./kit/cartIcon/CartIcon";
+import {Pagination} from './kit/pagination/Pagination';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <TopLine />
+
+    {/*  TODO: remove!! */}
+    <div>
+      {/*buttons*/}
+      <div style={{backgroundColor: 'black'}}>
+        <Button value={'Нажми'} type={'green'}>Нажми</Button>
+        <br/>
+        <Button value={'Нажми'} type={'white'} />
+      </div>
+
+      {/*cart icon*/}
+      <CartIcon onClick={() => {}} />
+
+      {/*pagination*/}
+      <Pagination
+        count={5}
+        page={1}
+        onChange={(e, page) => {console.log(page)}}
+      />
+    </div>
+
+
     </div>
   );
 }

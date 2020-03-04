@@ -1,0 +1,30 @@
+
+.CartIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 4px;
+  background-color: #000000;
+  opacity: 0.8;
+
+  &:hover {
+    background-color: #ed2d2d;
+    // в макете криво вставлены svg-шки. Приходится шаманить :)
+    :global {
+      #Rectangle-3 {
+        fill: #ed2d2d;
+      }
+    }
+  }
+  &:active {
+    background-color: #d00000;
+    // аналогично
+    :global {
+      #Rectangle-3 {
+        fill: #d00000;
+      }
+    }
+  }
+}

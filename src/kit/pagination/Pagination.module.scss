@@ -1,0 +1,33 @@
+.wrapper {
+  :global {
+    .MuiPagination-ul {
+      .MuiPaginationItem-root {
+        background-color: #F3F3F3;
+        color: #2B94E1;
+        border-radius: 0;
+
+        &.Mui-selected {
+          background-color: #2B94E1;
+          color: white;
+        }
+
+        &:hover {
+          background-color: #DEE3E5;
+          color: #2B94E1;
+        }
+
+        &:active {
+          background-color: #0071BC;
+          color: white;
+        }
+
+      }
+      //li:not(:first-child):not(:last-child):nth-child(even) {
+      //  .MuiPaginationItem-root {
+      //    background-color: #2B94E1;
+      //    color: white;
+      //  }
+      //}
+    }
+  }
+}
