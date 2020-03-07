@@ -4,6 +4,7 @@ import styles from './Button.module.scss';
 interface IButtonProps {
   value: string
   type: 'green' | 'white'
+  onClick: () => void
 }
 
 export const Button: React.FC<IButtonProps> = (props) => {

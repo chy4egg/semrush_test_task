@@ -1,0 +1,20 @@
+/*
+  Миксин для мультистрочного overflow: ellipsis
+
+  пример:
+  .block-with-text {
+    @include multiLineEllipsis($fontSize: 1.2em, $lineHeight: 1.8em $lineCount: 3);
+  }
+*/
+@mixin multiLineEllipsis($fontSize, $lineHeight, $lineCount) {
+  display: block; /* Fallback for non-webkit */
+  display: -webkit-box;
+  max-width: 400px;
+  height: calc(#{$fontSize} * #{$lineHeight} * #{$lineCount}); /* Fallback for non-webkit */
+  font-size: $fontSize;
+  line-height: $lineHeight;
+  -webkit-line-clamp: $lineCount;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

@@ -1,0 +1,73 @@
+@import 'src/scss/mixins.scss';
+@import 'src/scss/var.scss';
+
+.wrapper {
+  display: block;
+  align-items: center;
+  width: 345px;
+  height: 424px;
+  margin-left: 38px;
+  margin-bottom: 40px;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+  overflow: hidden;
+
+  @media(max-width: $medium) {
+    width: 100%;
+    margin: 0;
+    margin-bottom: 15px;
+  }
+}
+
+.link {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+.contentWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
+  padding: 16px 24px 28px 24px;
+  height: 268px;
+}
+
+.imageWrapper {
+  width: 100%;
+  height: 160px;
+  border-radius: 6px 6px 0 0 ;
+  background-size: cover;
+  background-position: center;
+}
+
+.title {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 32px;
+  color: #000000;
+  text-align: left;
+  margin-bottom: 16px;
+  @include multiLineEllipsis($fontSize: 24px, $lineHeight: 32px, $lineCount: 3);
+}
+
+.text {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+  color: #333333;
+  mix-blend-mode: normal;
+  opacity: 0.6;
+  text-align: left;
+  @include multiLineEllipsis($fontSize: 16px, $lineHeight: 24px, $lineCount: 3);
+}
+
+.tagsWrapper {
+  padding-top: 10px;
+  margin-top: auto;
+  margin-right: auto;
+}

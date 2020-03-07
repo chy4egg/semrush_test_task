@@ -1,0 +1,30 @@
+@import 'src/scss/var.scss';
+
+.wrapper {
+  display: flex;
+  width: 1114px;
+  margin: auto;
+
+  @media(max-width: $large) {
+    width: 730px;
+  }
+
+  @media(max-width: $medium) {
+    width: 100%;
+  }
+}
+
+.list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  // must be as margin of the list item
+  margin-left: -38px;
+
+  @media(max-width: $medium) {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

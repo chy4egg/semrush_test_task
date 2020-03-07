@@ -1,0 +1,14 @@
+@import 'src/scss/var.scss';
+
+.wrapper {
+  padding-top: 70px;
+  padding-left: 93px;
+  padding-right: 93px;
+  padding-bottom: 40px;
+
+  @media(max-width: $medium) {
+    padding-top: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}

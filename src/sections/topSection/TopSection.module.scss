@@ -1,9 +1,11 @@
 .TopSection {
   min-height: 300px;
-  background: #3E8856 url("../../assets/img/header_pattern.png") repeat-x;
+  background: #3E8856 url("../../assets/img/header_pattern.png") repeat;
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-top: 56px;
+  padding-bottom: 56px;
 }
 
 .title {
@@ -13,6 +15,7 @@
   line-height: 56px;
   color: #D8D8D8;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  margin-bottom: 14px;
 }
 
 .text {
@@ -22,4 +25,8 @@
   line-height: 24px;
   text-align: center;
   color: #FFFFFF;
+}
+
+.buttonWrapper {
+  margin-top: 28px;
 }
