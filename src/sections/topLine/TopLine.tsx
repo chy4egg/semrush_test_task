@@ -5,7 +5,9 @@ import { ReactComponent as Logo } from 'src/assets/img/logo.svg';
 export const TopLine: React.FC = () => {
   return (
     <div className={styles.topLine}>
-      <Logo />
+      <a href="https://www.semrush.com/">
+        <Logo />
+      </a>
     </div>
   )
 };

@@ -1,6 +1,8 @@
 @import 'src/scss/var.scss';
 
 .wrapper {
+  display: flex;
+  flex-direction: column;
   padding-top: 70px;
   padding-left: 93px;
   padding-right: 93px;
