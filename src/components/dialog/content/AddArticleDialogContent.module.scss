@@ -1,0 +1,35 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 320px;
+}
+
+.title {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 38px;
+  color: #424242;
+  margin-bottom: 30px;
+}
+
+.uploaderWrapper {
+  margin-bottom: 24px;
+}
+
+.label {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 22px;
+  color: #333333;
+  margin-bottom: 8px;
+}
+
+.field {
+  margin-bottom: 24px;
+}
+
+.saveButton {
+  margin-top: 32px;
+}

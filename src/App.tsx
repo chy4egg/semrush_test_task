@@ -36,6 +36,7 @@ const App = () => {
     setIsModalOpen(true);
   };
 
+  // TODO
   const handleSubmitArticle = () => {
     console.log('SUBMIT !!!');
   };
@@ -49,7 +50,6 @@ const App = () => {
         open={isModalOpen}
         onClose={() => setIsModalOpen(false)}
       >
-        <div>Контент модалки</div>
         <AddArticleDialogContent onAddArticle={handleSubmitArticle} />
       </Dialog>
     </div>

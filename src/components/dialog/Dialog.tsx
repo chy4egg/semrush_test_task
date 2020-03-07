@@ -2,7 +2,7 @@ import React from 'react';
 import DialogContent from '@material-ui/core/DialogContent'
 import {Dialog as DialogWindow} from "@material-ui/core";
 import styles from './Dialog.module.scss';
-import {ReactComponent as Icon} from 'src/assets/img/iconClose.svg';
+import {ReactComponent as Icon} from 'src/assets/img/icon/iconClose.svg';
 
 interface IDialogProps {
   children: JSX.Element[] | JSX.Element,

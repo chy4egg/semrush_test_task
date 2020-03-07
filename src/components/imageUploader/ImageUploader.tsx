@@ -1,11 +1,11 @@
-import React, { useCallback, useState } from 'react'
-import { useDropzone } from 'react-dropzone'
+import React, {useCallback, useState} from 'react'
+import {useDropzone} from 'react-dropzone'
 import styles from './ImageUploader.module.scss';
+import {CartIcon} from "src/kit/cartIcon/CartIcon";
 
 export interface IImageUploaderProps {
   onChange: (url: string) => void
-  url: string
-  size: { width: number, height: number }
+  url?: string
   aspectRatio?: number // (16 / 9)
 }
 
@@ -14,35 +14,36 @@ export const ImageUploader: React.FC<IImageUploaderProps> = (props) => {
     const reader = new FileReader();
     const aImage = acceptedFiles[0];
     reader.readAsDataURL(aImage);
-    reader.addEventListener("load", (e) => {
+    reader.addEventListener("load", () => {
       const base64url = reader.result;
-      setPreview(base64url);
+      if (typeof base64url === 'string') setPreview(base64url)
     }, false);
-  }, [])
+  }, []);
 
-  // в useDropzone есть доп. параметры. См. документацию
-  const { getRootProps, getInputProps } = useDropzone({ onDrop })
-  const [preview, setPreview] = useState<any>(undefined);
-  const [initialUrl] = useState<any>(props.url);
+  const {getRootProps, getInputProps} = useDropzone({onDrop});
+  const [initialUrl] = useState<string | undefined>(props.url);
+  const [preview, setPreview] = useState<string | undefined>(undefined);
 
-  const handleRemoveImg = (event: React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
-    event.stopPropagation();
-    setPreview(undefined);
-    props.onChange(initialUrl)
+  const handleRemoveImage = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    e.stopPropagation();
+    setPreview(initialUrl);
   };
 
   return (
     <div {...getRootProps()}>
       <input {...getInputProps()} />
       <div className={styles.wrapper}>
-        <div className={styles.imageNameField}>
-          <img className={styles.image} src={props.url} alt={props.url}/>
-        </div>
-        <div>
-          {preview &&
-          <span className={styles.remove} onClick={handleRemoveImg}>удалить</span>
-          }
-        </div>
+
+        {preview ? (
+          <>
+            <div className={styles.removeIcon} onClick={(e) => handleRemoveImage(e)}><CartIcon/></div>
+            <img className={styles.image} src={preview} alt={props.url}/>
+          </>
+        ) : (
+          <div className={styles.imageNameField}>
+            <p className={styles.text}>select an image file to upload or drag it here</p>
+          </div>
+        )}
       </div>
     </div>
   )

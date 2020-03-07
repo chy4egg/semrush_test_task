@@ -1,4 +1,6 @@
 import React from 'react';
+import styles from './AddArticleDialogContent.module.scss';
+import {ImageUploader} from "src/components/imageUploader/ImageUploader";
 
 interface IAddArticleDialogContentProps {
   onAddArticle: () => void
@@ -6,6 +8,10 @@ interface IAddArticleDialogContentProps {
 
 export const AddArticleDialogContent:React.FC<IAddArticleDialogContentProps> = (props) => {
   return (
-    <div onClick={props.onAddArticle}>ADD !</div>
+    <div className={styles.wrapper}>
+      <p className={styles.title}>Add new</p>
+      <ImageUploader onChange={() => {}} />
+      {/* TODO: onAddArticle на кнопку */}
+    </div>
   )
 };
