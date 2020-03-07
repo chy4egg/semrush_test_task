@@ -1,11 +1,25 @@
 .TopSection {
-
+  min-height: 300px;
+  background: #3E8856 url("../../assets/img/header_pattern.png") repeat-x;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .title {
-
+  font-style: normal;
+  font-weight: bold;
+  font-size: 48px;
+  line-height: 56px;
+  color: #D8D8D8;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .text {
-
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+  color: #FFFFFF;
 }
