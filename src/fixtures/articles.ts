@@ -27,4 +27,22 @@ export const articles: IArticle[] = [
     title: '4 HTTPS & SSL Does Not Mean You Have a Secure Website',
     text: 'Having an SSL certificate does not mean you have a secure website, and with the new European GDPR regulations'
   },
+  {
+    img: 'https://image.freepik.com/free-vector/sunset-sunrise-ocean-nature-landscape_33099-2244.jpg',
+    link: 'https://www.google.com/',
+    title: '5 HTTPS & SSL Does Not Mean You Have a Secure Website',
+    text: 'Having an SSL certificate does not mean you have a secure website, and with the new European GDPR regulations'
+  },
+  {
+    img: 'https://image.freepik.com/free-vector/sunset-sunrise-ocean-nature-landscape_33099-2244.jpg',
+    link: 'https://www.google.com/',
+    title: '6 HTTPS & SSL Does Not Mean You Have a Secure Website',
+    text: 'Having an SSL certificate does not mean you have a secure website, and with the new European GDPR regulations'
+  },
+  {
+    img: 'https://image.freepik.com/free-vector/sunset-sunrise-ocean-nature-landscape_33099-2244.jpg',
+    link: 'https://www.google.com/',
+    title: '7 HTTPS & SSL Does Not Mean You Have a Secure Website',
+    text: 'Having an SSL certificate does not mean you have a secure website, and with the new European GDPR regulations'
+  },
 ];

@@ -9,6 +9,13 @@ interface IButtonProps {
 
 export const Button: React.FC<IButtonProps> = (props) => {
   return (
-    <button className={`${styles.button} ${styles[props.type]}`} value={props.value}>{props.value}</button>
+    <button
+      className={`${styles.button} 
+      ${styles[props.type]}`}
+      value={props.value}
+      onClick={props.onClick}
+    >
+      {props.value}
+    </button>
   )
 }
