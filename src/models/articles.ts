@@ -5,9 +5,3 @@ export interface IArticle {
   description: string,
   tags?: string[],
 }
-
-export interface IFormData {
-  img: string,
-  title: string,
-  description: string,
-}

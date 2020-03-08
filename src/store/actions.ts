@@ -1,6 +1,6 @@
-import {IFormData} from "src/models/articles";
+import {IArticle} from "src/models/articles";
 
-export const addArticle = (payload: IFormData) => (dispatch: any) => {
+export const addArticle = (payload: IArticle) => (dispatch: any) => {
   dispatch({
     type: 'ADD_ARTICLE',
     payload,

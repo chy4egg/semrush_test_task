@@ -5,10 +5,10 @@ import {ArticlesSection} from './sections/articlesSection/ArticlesSection';
 import {paginator} from "src/utils/paginator/paginator";
 import {Dialog} from "src/components/dialog/Dialog";
 import {AddArticleDialogContent} from "src/components/dialog/content/AddArticleDialogContent";
-import {IFormData} from "src/models/articles";
 import {addArticle} from "src/store/actions";
 import {useDispatch, useSelector} from "react-redux";
 import {IInitialState} from "src/store/state";
+import {IArticle} from "src/models/articles";
 
 const pageSize = 6;
 
@@ -16,12 +16,13 @@ const emptyFormData = {
   img: '',
   title: '',
   description: '',
+  link: '',
 };
 
 const App: React.FC = () => {
   const dispatch = useDispatch();
   const articles = useSelector<IInitialState, any>((state: IInitialState) => state.articles);
-  const [formData, setFormData] = useState<IFormData>(emptyFormData);
+  const [formData, setFormData] = useState<IArticle>(emptyFormData);
   const [filteredList, setFilteredList] = useState(articles);
   const [isModalOpen, setIsModalOpen] = useState(true); // TODO FALSE !
   const [page, setPage] = useState(1);
@@ -49,7 +50,7 @@ const App: React.FC = () => {
     setFormData(emptyFormData);
   };
 
-  const onChangeFormData = (formData: IFormData) => {
+  const onChangeFormData = (formData: IArticle) => {
     setFormData(formData);
   };
 

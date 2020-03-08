@@ -1,4 +1,4 @@
-import {IFormData} from "src/models/articles";
+import {IArticle} from "src/models/articles";
 
 export interface IFormErrors {
   img?: string,
@@ -6,18 +6,16 @@ export interface IFormErrors {
   description?: string,
 }
 
-const commonErrorMessage = 'Необходимо заполнить поле';
+export const commonErrorMessage = 'This field is required';
 
-// TODO: tests + ts-ignore fix!
-export const formValidation = (formData: IFormData): IFormErrors => {
+export const formValidation = (formData: IArticle): IFormErrors => {
   const errors: IFormErrors = {};
 
   for (let f in formData) {
-    console.log(formData['title']);
-    // @ts-ignore
-    if (!formData[f].length) {
-      // @ts-ignore
-      errors[f] = commonErrorMessage;
+    const typedF = f as keyof typeof formData;
+    // пока для 'tags' и 'link' нет полей в форме добавления новой статьи
+    if (typedF !== 'tags' && typedF !== 'link' && !formData[typedF].length) {
+      errors[typedF] = commonErrorMessage;
     }
   }
 

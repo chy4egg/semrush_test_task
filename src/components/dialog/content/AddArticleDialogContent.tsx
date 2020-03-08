@@ -1,52 +1,45 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import styles from './AddArticleDialogContent.module.scss';
 import {ImageUploader} from "src/components/imageUploader/ImageUploader";
 import {Button} from 'src/kit/button/Button';
 import {TextField} from 'src/kit/textField/TextField';
-import {IFormData} from "src/models/articles";
 import {TextAreaField} from "src/kit/textAreaField/TextAreaField";
 import {formValidation, IFormErrors} from './helpers/formValidation';
+import {IArticle} from "src/models/articles";
 
 interface IAddArticleDialogContentProps {
   onAddArticle: () => void
-  formData: IFormData
-  onChangeFormData: (data: IFormData) => void
+  formData: IArticle
+  onChangeFormData: (data: IArticle) => void
 }
 
-
 export const AddArticleDialogContent:React.FC<IAddArticleDialogContentProps> = (props) => {
-
   const [errors, setErrors] = useState<IFormErrors>({});
   const [showErrors, setShowErrors] = useState(false);
   const {formData, onAddArticle, onChangeFormData} = props;
 
-  // TODO: объединить все handle в обстракцию, вызывать обновление ошибок через useEffect() !!!!!
-
   const handleTitleChange = (title: string) => {
     onChangeFormData({...formData, title});
-    setErrors(formValidation(formData));
-    setShowErrors(false);
   };
   const handleDescriptionChange = (description: string) => {
     onChangeFormData({...formData, description});
-    setErrors(formValidation(formData));
-    setShowErrors(false);
   };
   const handleImageChange = (img: string) => {
     onChangeFormData({...formData, img});
-    setErrors(formValidation(formData));
-    setShowErrors(false);
   };
 
   const handleAddArticle = () => {
-    if (!errors) {
-      onAddArticle();
-    } else {
-      // todo: добавить ошибки полей
+    if (Object.keys(errors).length) {
       setShowErrors(true);
-      console.log('Ошибка валидации');
+    } else {
+      onAddArticle();
     }
   };
+
+  useEffect(() => {
+    setErrors(formValidation(formData));
+    setShowErrors(false);
+  }, [formData]);
 
   return (
     <div className={styles.wrapper}>
