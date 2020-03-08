@@ -1,12 +1,13 @@
 import {commonErrorMessage, formValidation, IFormErrors} from "./formValidation";
-import {IFormData} from "src/models/articles";
+import {IArticle} from "src/models/articles";
 
 describe('formValidation', () => {
   it('should return an error for description field', () => {
-    const formData: IFormData = {
+    const formData: IArticle = {
       img: 'fakeImageUrl',
       title: 'title',
-      description: ''
+      description: '',
+      link: '',
     };
     const expectedErrors: IFormErrors = {
       description: commonErrorMessage,
@@ -14,10 +15,11 @@ describe('formValidation', () => {
     expect(formValidation(formData)).toEqual(expectedErrors);
   });
   it('should return errors for all fields', () => {
-    const formData: IFormData = {
+    const formData: IArticle = {
       img: '',
       title: '',
       description: '',
+      link: '',
     };
     const expectedErrors: IFormErrors = {
       img: commonErrorMessage,
@@ -27,10 +29,11 @@ describe('formValidation', () => {
     expect(formValidation(formData)).toEqual(expectedErrors);
   });
   it('should return an empty errors object', () => {
-    const formData: IFormData = {
+    const formData: IArticle = {
       img: 'fakeImg',
       title: 'fakeTitle',
       description: 'fakeDescription',
+      link: '',
     };
     const expectedErrors: IFormErrors = {};
     expect(formValidation(formData)).toEqual(expectedErrors);

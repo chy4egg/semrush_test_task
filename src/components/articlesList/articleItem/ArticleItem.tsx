@@ -10,7 +10,7 @@ interface IArticleItemProps {
 export const ArticleItem: React.FC<IArticleItemProps> = ({article}) => {
   return (
     <li className={styles.wrapper}>
-      <a href={styles.link}>
+      <a href={article.link}>
         <div className={styles.imageWrapper} style={{backgroundImage: `url(${article.img})`}}/>
         <div className={styles.contentWrapper}>
           <p className={styles.title}>

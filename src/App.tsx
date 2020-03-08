@@ -5,7 +5,7 @@ import {ArticlesSection} from './sections/articlesSection/ArticlesSection';
 import {paginator} from "src/utils/paginator/paginator";
 import {Dialog} from "src/components/dialog/Dialog";
 import {AddArticleDialogContent} from "src/components/dialog/content/AddArticleDialogContent";
-import {addArticle} from "src/store/actions";
+import {addArticle, updateArticles} from "src/store/actions";
 import {useDispatch, useSelector} from "react-redux";
 import {IInitialState} from "src/store/state";
 import {IArticle} from "src/models/articles";
@@ -34,7 +34,7 @@ const App: React.FC = () => {
     setPage(page);
     const params = new URLSearchParams(window.location.search);
     params.set('page', page.toString());
-    const newUrl = window.location.protocol + '//' + window.location.host + window.location.pathname + '?' + params.toString();
+    const newUrl = `${window.location.protocol}//${window.location.host}${window.location.pathname}?${params.toString()}`;
     window.history.pushState({path: newUrl}, '', newUrl);
   };
 
@@ -70,16 +70,12 @@ const App: React.FC = () => {
     setFilteredList(paginator(articles, pageSize, page))
   }, [page, articles]);
 
-  // fixme: не обновляет из localStorage
   const getArticlesFromLocalStorage = () => {
-    console.log('get articles!');
     const local = window.localStorage.getItem(articlesStorageKey);
     if (local) {
       const parsedLocal = JSON.parse(local) as { articles: IArticle[] };
       if (parsedLocal.articles) {
-        // TODO: обновлять через REDUX
-        // parsedLocal.articles
-        // addArticle(formData)(dispatch);
+        updateArticles(parsedLocal.articles)(dispatch);
       }
     }
   };

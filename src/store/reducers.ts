@@ -10,6 +10,11 @@ export const rootReducer = (state: any, action: any): any => {
         ...state,
         articles: newArticles,
       };
+    case 'UPDATE_ARTICLES':
+      return {
+        ...state,
+        articles: action.payload,
+      };
     default:
       return state
   }
