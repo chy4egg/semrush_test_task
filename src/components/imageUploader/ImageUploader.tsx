@@ -6,23 +6,30 @@ import {CartIcon} from "src/kit/cartIcon/CartIcon";
 export interface IImageUploaderProps {
   onChange: (url: string) => void
   url?: string
-  aspectRatio?: number // (16 / 9)
 }
 
 export const ImageUploader: React.FC<IImageUploaderProps> = (props) => {
+  const {onChange} = props;
+
+  const [initialUrl] = useState<string | undefined>(props.url);
+  const [preview, setPreview] = useState<string | undefined>(undefined);
+
   const onDrop = useCallback(acceptedFiles => {
     const reader = new FileReader();
     const aImage = acceptedFiles[0];
     reader.readAsDataURL(aImage);
     reader.addEventListener("load", () => {
       const base64url = reader.result;
-      if (typeof base64url === 'string') setPreview(base64url)
+      if (typeof base64url === 'string') {
+        setPreview(base64url);
+        // на этом этапе хорошо бы отправить blob на сервак,
+        // получить нормальный url и его уже положить в onChange
+        onChange(base64url);
+      }
     }, false);
-  }, []);
+  }, [onChange]);
 
   const {getRootProps, getInputProps} = useDropzone({onDrop});
-  const [initialUrl] = useState<string | undefined>(props.url);
-  const [preview, setPreview] = useState<string | undefined>(undefined);
 
   const handleRemoveImage = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     e.stopPropagation();

@@ -13,11 +13,8 @@
   margin-bottom: 30px;
 }
 
-.uploaderWrapper {
-  margin-bottom: 24px;
-}
-
 .label {
+  display: block;
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
@@ -26,10 +23,17 @@
   margin-bottom: 8px;
 }
 
+.uploaderWrapper {
+  margin-bottom: 24px;
+}
+
 .field {
   margin-bottom: 24px;
 }
 
-.saveButton {
-  margin-top: 32px;
+.buttonWrapper {
+  margin-top: 8px;
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
 }

@@ -5,3 +5,9 @@ export interface IArticle {
   text: string,
   tags?: string[],
 }
+
+export interface IFormData {
+  img: string,
+  title: string,
+  description: string,
+}
