@@ -2,20 +2,26 @@ import React, {useEffect, useState} from 'react';
 import {TopLine} from './sections/topLine/TopLine';
 import {TopSection} from "./sections/topSection/TopSection";
 import {ArticlesSection} from './sections/articlesSection/ArticlesSection';
-import {articles} from "src/fixtures/articles";
 import {paginator} from "src/utils/paginator/paginator";
 import {Dialog} from "src/components/dialog/Dialog";
 import {AddArticleDialogContent} from "src/components/dialog/content/AddArticleDialogContent";
 import {IFormData} from "src/models/articles";
+import {addArticle} from "src/store/actions";
+import {useDispatch, useSelector} from "react-redux";
+import {IInitialState} from "src/store/state";
 
 const pageSize = 6;
 
-const App = () => {
-  const [formData, setFormData] = useState<IFormData>({
-    img: '',
-    title: '',
-    description: '',
-  });
+const emptyFormData = {
+  img: '',
+  title: '',
+  description: '',
+};
+
+const App: React.FC = () => {
+  const dispatch = useDispatch();
+  const articles = useSelector<IInitialState, any>((state: IInitialState) => state.articles);
+  const [formData, setFormData] = useState<IFormData>(emptyFormData);
   const [filteredList, setFilteredList] = useState(articles);
   const [isModalOpen, setIsModalOpen] = useState(true); // TODO FALSE !
   const [page, setPage] = useState(1);
@@ -23,7 +29,7 @@ const App = () => {
 
   useEffect(() => {
     setCount(Math.ceil(articles.length / pageSize))
-  }, []);
+  }, [articles.length]);
 
   const handlePageChange = (page: number) => {
     setPage(page);
@@ -31,15 +37,16 @@ const App = () => {
 
   useEffect(() => {
     setFilteredList(paginator(articles, pageSize, page))
-  }, [page]);
+  }, [page, articles]);
 
   const handleAddArticle = () => {
     setIsModalOpen(true);
   };
 
   const handleSubmitArticle = () => {
-    console.log(formData); // TODO: submit that
+    addArticle(formData)(dispatch);
     setIsModalOpen(false);
+    setFormData(emptyFormData);
   };
 
   const onChangeFormData = (formData: IFormData) => {

@@ -52,6 +52,7 @@
   text-align: left;
   margin-bottom: 16px;
   @include multiLineEllipsis($fontSize: 24px, $lineHeight: 32px, $lineCount: 3);
+  margin-right: auto;
 }
 
 .text {
@@ -64,6 +65,7 @@
   opacity: 0.6;
   text-align: left;
   @include multiLineEllipsis($fontSize: 16px, $lineHeight: 24px, $lineCount: 3);
+  margin-right: auto;
 }
 
 .tagsWrapper {

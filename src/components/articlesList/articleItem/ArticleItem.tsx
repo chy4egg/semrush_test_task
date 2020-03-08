@@ -17,7 +17,7 @@ export const ArticleItem: React.FC<IArticleItemProps> = ({article}) => {
             {article.title}
           </p>
           <p className={styles.text}>
-            { article.text }
+            { article.description }
           </p>
           {article.tags && (
             <div className={styles.tagsWrapper}>
