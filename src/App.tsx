@@ -74,7 +74,7 @@ const App: React.FC = () => {
     const local = window.localStorage.getItem(articlesStorageKey);
     if (local) {
       const parsedLocal = JSON.parse(local) as { articles: IArticle[] };
-      if (parsedLocal.articles) {
+      if (parsedLocal && parsedLocal.articles) {
         updateArticles(parsedLocal.articles)(dispatch);
       }
     }
