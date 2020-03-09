@@ -9,6 +9,7 @@ import {addArticle, updateArticles} from "src/store/actions";
 import {useDispatch, useSelector} from "react-redux";
 import {IInitialState} from "src/store/state";
 import {IArticle} from "src/models/articles";
+import Notifier, {showMessage} from "src/components/notitier/Notifier";
 
 const pageSize = 6;
 const articlesStorageKey = 'react-app__local-articles';
@@ -93,6 +94,10 @@ const App: React.FC = () => {
     addArticle(formData)(dispatch);
     setIsModalOpen(false);
     setFormData(emptyFormData);
+    showMessage({
+      variant: 'success',
+      message: 'Article was added'
+    });
   };
 
   const onChangeFormData = (formData: IArticle) => {
@@ -114,6 +119,7 @@ const App: React.FC = () => {
           onChangeFormData={onChangeFormData}
         />
       </Dialog>
+      <Notifier />
     </div>
   );
 };
