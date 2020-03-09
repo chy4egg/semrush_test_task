@@ -59,7 +59,7 @@ const App: React.FC = () => {
         window.localStorage.setItem(articlesStorageKey, JSON.stringify(objectToSave));
       } catch (e) {
         showMessage({
-          variant: 'error',
+          variant: 'warning',
           message: 'Не удалось сохранить в localStorage. Возможно кончилось место.'
         })
       }
@@ -90,6 +90,7 @@ const App: React.FC = () => {
     addArticle(formData)(dispatch);
     setIsModalOpen(false);
     setFormData(emptyFormData);
+    handlePageChange(1);
     showMessage({
       variant: 'success',
       message: 'Article was added'
