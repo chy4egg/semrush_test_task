@@ -31,14 +31,7 @@ const App: React.FC = () => {
   const [page, setPage] = useState(1);
   const [count, setCount] = useState(1);
 
-  const updatePage = (page: number) => {
-    setPage(page);
-    const params = new URLSearchParams(window.location.search);
-    params.set('page', page.toString());
-    const newUrl = `${window.location.protocol}//${window.location.host}${window.location.pathname}?${params.toString()}`;
-    window.history.pushState({path: newUrl}, '', newUrl);
-  };
-
+  // set the page number from url search params
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const page = params.get('page');
@@ -47,31 +40,8 @@ const App: React.FC = () => {
     }
   }, []);
 
+  // get articles from localStorage
   useEffect(() => {
-    getArticlesFromLocalStorage();
-  }, []);
-
-  useEffect(() => {
-    if (isMounted) {
-      saveArticlesInLocalStorage();
-    } else {
-      setIsMounted(true);
-    }
-  }, [articles]);
-
-  useEffect(() => {
-    setCount(Math.ceil(articles.length / pageSize))
-  }, [articles.length]);
-
-  const handlePageChange = (page: number) => {
-    updatePage(page);
-  };
-
-  useEffect(() => {
-    setFilteredList(paginator(articles, pageSize, page))
-  }, [page, articles]);
-
-  const getArticlesFromLocalStorage = () => {
     const local = window.localStorage.getItem(articlesStorageKey);
     if (local) {
       const parsedLocal = JSON.parse(local) as { articles: IArticle[] };
@@ -79,15 +49,41 @@ const App: React.FC = () => {
         updateArticles(parsedLocal.articles)(dispatch);
       }
     }
-  };
+  }, [dispatch]);
 
-  const saveArticlesInLocalStorage = () => {
-    const objectToSave = { articles };
-    window.localStorage.setItem(articlesStorageKey, JSON.stringify(objectToSave));
-  };
+  // save articles to localStorage
+  useEffect(() => {
+    if (isMounted) {
+      const objectToSave = { articles };
+      try {
+        window.localStorage.setItem(articlesStorageKey, JSON.stringify(objectToSave));
+      } catch (e) {
+        showMessage({
+          variant: 'error',
+          message: 'Не удалось сохранить в localStorage. Возможно кончилось место.'
+        })
+      }
+    } else {
+      setIsMounted(true);
+    }
+  }, [articles, isMounted]);
 
-  const handleAddArticle = () => {
-    setIsModalOpen(true);
+  // update page count after changes in articles
+  useEffect(() => {
+    setCount(Math.ceil(articles.length / pageSize))
+  }, [articles.length]);
+
+  // update the list of filtered articles
+  useEffect(() => {
+    setFilteredList(paginator(articles, pageSize, page))
+  }, [page, articles]);
+
+  const handlePageChange = (page: number) => {
+    setPage(page);
+    const params = new URLSearchParams(window.location.search);
+    params.set('page', page.toString());
+    const newUrl = `${window.location.protocol}//${window.location.host}${window.location.pathname}?${params.toString()}`;
+    window.history.pushState({path: newUrl}, '', newUrl);
   };
 
   const handleSubmitArticle = () => {
@@ -107,7 +103,7 @@ const App: React.FC = () => {
   return (
     <div className="App my-react-app">
       <TopLine />
-      <TopSection onAdd={handleAddArticle}/>
+      <TopSection onAdd={() => {setIsModalOpen(true)}}/>
       <ArticlesSection articles={filteredList} pageSize={pageSize} page={page} count={count} onPageChange={handlePageChange} />
       <Dialog
         open={isModalOpen}

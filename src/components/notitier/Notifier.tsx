@@ -3,7 +3,7 @@ import {makeStyles, Snackbar, Portal} from "@material-ui/core";
 import SnackbarContent, {SnackbarContentProps} from "@material-ui/core/SnackbarContent";
 import styles from './Notifier.module.scss';
 
-const DEFAULT_DURATION = 1500;
+const DEFAULT_DURATION = 2000;
 
 export interface INotifierState {
   open: boolean,
